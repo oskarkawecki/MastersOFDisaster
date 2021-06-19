@@ -17,9 +17,9 @@ public class App {
 
 Workbook example1 = ExcelReader.openExcelFile();
         
-        PrintFirstReport.printSheetNames(example1);
+ExcelReader.getTaskFromSheet(example1);
 
-  
+PrintFirstReport.printSheetNames(example1);
     }
 
 }
