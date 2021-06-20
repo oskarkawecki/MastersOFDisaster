@@ -10,14 +10,20 @@ public class FindFiles {
     public static ArrayList<String> getFiles(String path) {
 
         File folder = new File(path);
-        for (File file : folder.listFiles()) {
-            if (file.isDirectory()) {
-                getFiles(file.getAbsolutePath());
-            } else {
-                if (file.getName().endsWith(".xls")) {
-                    filesPaths.add(file.getAbsolutePath());
+
+        if (!folder.isDirectory()) {
+            filesPaths.add(path);
+        } else {
+            for (File file : folder.listFiles()) {
+                if (file.isDirectory()) {
+                    getFiles(file.getAbsolutePath());
+                } else {
+                    if (file.getName().endsWith(".xls")) {
+                        filesPaths.add(file.getAbsolutePath());
+                    }
                 }
             }
+//            return filesPaths;
         }
         return filesPaths;
     }
