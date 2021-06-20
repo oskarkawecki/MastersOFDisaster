@@ -1,14 +1,12 @@
 package model;
 
-import services.ExcelReader;
+import java.util.ArrayList;
 
 public class Employee {
-    
-    String path = ExcelReader.path;
-    
+
     private String name;
 
-    private String surname;
+    ArrayList<Project> projects = new ArrayList<Project>();
 
     public String getName() {
         return name;
@@ -18,11 +16,8 @@ public class Employee {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public void addProject(Project project) {
+        this.projects.add(project);
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
 }
