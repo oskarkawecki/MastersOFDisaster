@@ -1,5 +1,18 @@
 package model;
 
-public class ModelTest {
+import java.time.LocalDate;
 
+public class ModelTest {
+    
+    Company company = new Company();
+    Employee employee = new Employee();
+    Project project = new Project();
+    Task task = new Task();
+    LocalDate date = LocalDate.of(2018, 11, 5);
+    
+    @Test
+    public void testDaneModelu() {
+        
+    }
+    
 }

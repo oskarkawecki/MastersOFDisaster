@@ -20,4 +20,8 @@ public class Employee {
         this.projects.add(project);
     }
 
+    public ArrayList<Project> getProjects() {
+        return projects;
+    }
+    
 }
