@@ -9,6 +9,7 @@ import model.Company;
 import services.ExcelReader;
 import services.FindFiles;
 import services.PrintFirstReport;
+import view.UI;
 
 public class App {
 
@@ -30,7 +31,7 @@ public class App {
 //
 //        PrintFirstReport.printReport1(company, 2012);
 
-//        UI.parsearguments(args);
+  UI.parsearguments(args);
 
     }
 }
