@@ -1,5 +1,7 @@
 package services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +23,41 @@ public class PrintFirstReport {
                 for (Task task : project.getTasks()) {
                     double hours = task.getHours();
                     projectTotalHours += hours;
+                }
+                if (timeSheet.containsKey(project.getName())) {
+                    timeSheet.put(project.getName(), timeSheet.get(project.getName()) + projectTotalHours);
+                } else {
+                    timeSheet.put(project.getName(), projectTotalHours);
+                }
+            }
+        }
+
+        if (timeSheet.isEmpty()) {
+            System.out.println("Brak danych do wyœwietlenia - sprawdz katalog");
+        } else {
+            System.out.println("--- RAPORT 1 ---");
+            for (String projectName : timeSheet.keySet()) {
+                System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
+            }
+        }
+    }
+
+    public static void printReportFrom(Company company, String date) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        
+        ArrayList<Employee> workers = company.getCompanyWorkers();
+        for (Employee worker : workers) {
+            for (Project project : worker.getProjects()) {
+                double projectTotalHours = 0;
+                for (Task task : project.getTasks()) {
+                    if (task.getDate().isBefore(localDate)) {
+                        continue;
+                    } else {
+                        double hours = task.getHours();
+                        projectTotalHours += hours;
+                    }
                 }
                 if (timeSheet.containsKey(project.getName())) {
                     timeSheet.put(project.getName(), timeSheet.get(project.getName()) + projectTotalHours);

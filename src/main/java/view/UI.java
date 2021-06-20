@@ -6,7 +6,6 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import model.Company;
 import services.ExcelReader;
 import services.PrintFirstReport;
 import services.PrintSecondReport;
@@ -21,12 +20,14 @@ public class UI {
         options.addOption("t", false, "wyswietl raport pierwszy");
 
         options.addOption("r", false, "wyswietl raport drugi");
+        options.addOption("from", true, "wyswietl raport od podanej daty");
         options.addOption("help", false, "wyswietl pomoc");
         options.addOption("path", true, "sciezka");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
         String path = cmd.getOptionValue("path");
+        String date = cmd.getOptionValue("from");
 
         if (path == null) {
             path = "src/main/resources/reporter-dane";
@@ -34,12 +35,29 @@ public class UI {
         } else {
             System.out.println("Raport pobrano z podanej sciezki " + path);
         }
+            
+            String sampleDate = "01/01/2012";
+        
+        if (date == null) {
+            date = sampleDate;
+            System.out.println("Raport przedstawia zakres od: " + date);
+        } else {
+            System.out.println("Raport przedstawia zakres od: " + date);
+        }
 
         if (cmd.hasOption("t")) {
-            PrintFirstReport.printReport1(ExcelReader.company(path));
+            if (date == sampleDate) {
+                PrintFirstReport.printReport1(ExcelReader.company(path));
+            } else {
+                PrintFirstReport.printReportFrom(ExcelReader.company(path), date);
+            }
 
         } else if (cmd.hasOption("r")) {
+            if (date == sampleDate) {
             PrintSecondReport.printReport2(ExcelReader.company(path));
+            }else {
+                PrintSecondReport.printReport2From(ExcelReader.company(path), date);
+            }
 
         } else if (cmd.hasOption("help")) {
             System.out.println("Opcje do wyboru:");
