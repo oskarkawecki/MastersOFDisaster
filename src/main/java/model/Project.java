@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Project {
     private String name;
-    private double time;
+
+//    private double time;
 
     ArrayList<Task> tasks = new ArrayList<Task>();
 
@@ -18,14 +19,6 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getTime() {
-        return time;
-    }
-
-    public void setTime(double time) {
-        this.time = time;
     }
 
     public void addTask(Task task) {
