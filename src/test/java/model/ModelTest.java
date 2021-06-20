@@ -14,8 +14,6 @@ public class ModelTest {
     @Test
     public void testDaneModelu() {
         
-        
     }
     
-
 }

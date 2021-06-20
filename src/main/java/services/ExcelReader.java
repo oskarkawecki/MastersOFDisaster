@@ -39,11 +39,11 @@ public class ExcelReader {
     }
 
     public static ArrayList<Project> getAllData(Workbook wb) {
-
-        Project project = new Project();
+      
         Employee employee = new Employee();
 
         for (Sheet sheet : wb) {
+            Project project = new Project();
             project.setName(sheet.getSheetName());
 
             for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
@@ -52,33 +52,16 @@ public class ExcelReader {
                 String name = sheet.getRow(i).getCell(1).getStringCellValue();
                 double hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
                 Task task = new Task(date, name, hours);
-
                 project.addTask(task);
-
             }
-
             employee.addProject(project);
-
         }
-
-        return null;
-
-    }
-
-    public static void getTaskFromSheet(Workbook wb) {
-
-        for (Sheet sheet : wb) {
-            for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
-
-                LocalDate date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
-                String name = sheet.getRow(i).getCell(1).getStringCellValue();
-                double hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
-
-            }
-        }
+        return employee.getProjects();
     }
 
     public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
+ 
+
 }

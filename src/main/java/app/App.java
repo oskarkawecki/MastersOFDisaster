@@ -1,6 +1,7 @@
 package app;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import org.apache.commons.cli.ParseException;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -10,6 +11,7 @@ import model.Employee;
 import model.Project;
 import model.Task;
 import services.ExcelReader;
+import services.PrintFirstReport;
 import view.UI;
 
 public class App {
@@ -20,26 +22,17 @@ public class App {
 
         Company company = new Company();
         Employee employee = new Employee();
+        
+        ArrayList<Project> projects = ExcelReader.getAllData(ExcelReader.openExcelFile());
+        for(Project project : projects){
+            employee.addProject(project);
+        }
         employee.setName("Adam Mickiewicz");
         company.addEmployee(employee);
-
-        Project project = new Project();
-        project.setName("Trasa kaszubska");
-        Task task = new Task();
-        task.setName("Analiza wymagan");
-        task.setHours(25);
-        LocalDate date = LocalDate.of(2018, 11, 5);
-        task.setDate(date);
-        employee.addProject(project);
-        project.addTask(task);
         
+        PrintFirstReport.printReport1(company, 2012);
         
-        
+//        UI.parsearguments(args);
 
-        UI.parsearguments(args);
-
-        Workbook example1 = ExcelReader.openExcelFile();
-
-        ExcelReader.getTaskFromSheet(example1);
     }
 }
