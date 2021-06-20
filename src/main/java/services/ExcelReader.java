@@ -18,11 +18,9 @@ import model.Task;
 
 public class ExcelReader {
 
-    public static String path = "src/main/resources/reporter-dane/2012/01/Kowalski_Jan.xls";
-
-    public static Workbook openExcelFile() {
+    public static Workbook openExcelFile(File file) {
         try {
-            return WorkbookFactory.create(new File("src/main/resources/reporter-dane/2012/01/Kowalski_Jan.xls"));
+            return WorkbookFactory.create(file);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -38,6 +36,19 @@ public class ExcelReader {
         return projects;
     }
 
+    public static Employee readEmployeeFromFile(File file) {
+        
+        Employee employee = new Employee();
+        
+        ArrayList<Project> projects = ExcelReader.getAllData(ExcelReader.openExcelFile(file));
+        for(Project project : projects){
+            employee.addProject(project);
+        }
+        String employeeName = file.getName().substring(0, file.getName().lastIndexOf('.'));
+        employee.setName(employeeName);
+        return employee;
+    }
+    
     public static ArrayList<Project> getAllData(Workbook wb) {
       
         Employee employee = new Employee();

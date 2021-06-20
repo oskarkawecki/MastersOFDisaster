@@ -22,13 +22,17 @@ public class PrintFirstReport {
                     double hours = task.getHours();
                     projectTotalHours += hours;
                 }
-                timeSheet.put(project.getName(), projectTotalHours);
+                if (timeSheet.containsKey(project.getName())) {
+                    timeSheet.put(project.getName(), timeSheet.get(project.getName()) + projectTotalHours);
+                } else {
+                    timeSheet.put(project.getName(), projectTotalHours);
+                }
             }
         }
-        
+
         System.out.println("Raport1");
-        for (Object objectName : timeSheet.keySet()) {
-            System.out.println("|" + objectName + "|" + " " + timeSheet.get(objectName) + " |");
+        for (String projectName : timeSheet.keySet()) {
+            System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
         }
 
     }
