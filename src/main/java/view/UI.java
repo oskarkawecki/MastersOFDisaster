@@ -9,6 +9,7 @@ import org.apache.commons.cli.ParseException;
 import model.Company;
 import services.ExcelReader;
 import services.PrintFirstReport;
+import services.PrintSecondReport;
 
 public class UI {
 
@@ -38,8 +39,7 @@ public class UI {
             PrintFirstReport.printReport1(ExcelReader.company(path));
 
         } else if (cmd.hasOption("r")) {
-
-            System.out.println("Raport2");
+            PrintSecondReport.printReport2(ExcelReader.company(path));
 
         } else if (cmd.hasOption("help")) {
             System.out.println("Opcje do wyboru:");
