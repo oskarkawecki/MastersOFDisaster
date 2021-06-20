@@ -5,6 +5,7 @@ import org.apache.commons.cli.ParseException;
 import model.Company;
 import services.ExcelReader;
 import services.PrintFirstReport;
+import view.UI;
 
 public class App {
 
@@ -15,6 +16,7 @@ public class App {
 
         Company company = ExcelReader.company(path);
         PrintFirstReport.printReport1(company);
-
+        UI.parsearguments(args);
     }
+
 }
