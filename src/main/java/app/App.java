@@ -14,8 +14,6 @@ public class App {
 
     public static void main(String[] args) throws ParseException {
 
-        Company company = ExcelReader.company(path);
-        PrintFirstReport.printReport1(company);
         UI.parsearguments(args);
     }
 

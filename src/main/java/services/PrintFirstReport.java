@@ -30,11 +30,14 @@ public class PrintFirstReport {
             }
         }
 
-        System.out.println("--- RAPORT 1 ---");
-        for (String projectName : timeSheet.keySet()) {
-            System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
+        if (timeSheet.isEmpty()) {
+            System.out.println("Brak danych do wyœwietlenia - sprawdz katalog");
+        } else {
+            System.out.println("--- RAPORT 1 ---");
+            for (String projectName : timeSheet.keySet()) {
+                System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
+            }
         }
-
     }
 
 }
