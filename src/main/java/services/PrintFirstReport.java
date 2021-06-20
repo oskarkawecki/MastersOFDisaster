@@ -12,7 +12,7 @@ public class PrintFirstReport {
 
     private static HashMap<String, Double> timeSheet = new HashMap<String, Double>();
 
-    public static void printReport1(Company company, int year) {
+    public static void printReport1(Company company) {
 
         ArrayList<Employee> workers = company.getCompanyWorkers();
         for (Employee worker : workers) {
@@ -30,7 +30,7 @@ public class PrintFirstReport {
             }
         }
 
-        System.out.println("Raport1");
+        System.out.println("--- RAPORT 1 ---");
         for (String projectName : timeSheet.keySet()) {
             System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
         }
