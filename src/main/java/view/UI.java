@@ -7,8 +7,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import services.ExcelReader;
-import services.PrintFirstReport;
-import services.PrintSecondReport;
+import services.PrintReport;
 
 public class UI {
 
@@ -35,9 +34,9 @@ public class UI {
         } else {
             System.out.println("Raport pobrano z podanej sciezki " + path);
         }
-            
-            String sampleDate = "01/01/2012";
-        
+
+        String sampleDate = "01/01/1900";
+
         if (date == null) {
             date = sampleDate;
             System.out.println("Raport przedstawia zakres od: " + date);
@@ -46,26 +45,19 @@ public class UI {
         }
 
         if (cmd.hasOption("t")) {
-            if (date == sampleDate) {
-                PrintFirstReport.printReport1(ExcelReader.company(path));
-            } else {
-                PrintFirstReport.printReportFrom(ExcelReader.company(path), date);
-            }
+            PrintReport.printFirstReport(ExcelReader.company(path), date);
 
         } else if (cmd.hasOption("r")) {
-            if (date == sampleDate) {
-            PrintSecondReport.printReport2(ExcelReader.company(path));
-            }else {
-                PrintSecondReport.printReport2From(ExcelReader.company(path), date);
-            }
+            PrintReport.printSecondReport(ExcelReader.company(path), date);
 
         } else if (cmd.hasOption("help")) {
             System.out.println("Opcje do wyboru:");
+
             System.out.println("Aby wybraæ raport pierwszy wpisz w konsole -t");
             System.out.println("Aby wybraæ raport drugi wpisz w konsole -r");
             System.out.println("Aby wybraæ zakres dat wpisz w konsole -from YYYY/MM/DD -to YYYY/MM/DD");
-            // System.out.println("Aby wybraæ raport za caly rok wpisz w konsole -year
-            // YYYY");
+// System.out.println("Aby wybraæ raport za caly rok wpisz w konsole -year
+// YYYY");
         } else {
             System.out.println("Aby wybrac pomoc wpisz -help");
 
