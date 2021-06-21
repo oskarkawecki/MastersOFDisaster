@@ -1,5 +1,8 @@
 package view;
 
+import java.time.LocalDate;
+import java.util.Collections;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -11,56 +14,64 @@ import services.PrintReport;
 
 public class UI {
 
+    public static String dateFromUser;
+    public static String sampleDate;
+
     public static void parsearguments(String[] args) throws ParseException {
 //System.out.println("Witaj w aplikacji");
 
         Options options = new Options();
 
-        options.addOption("t", false, "wyswietl raport pierwszy");
-
-        options.addOption("r", false, "wyswietl raport drugi");
+        options.addOption("report1", false, "wyswietl raport pierwszy");
+        options.addOption("report2", false, "wyswietl raport drugi");
         options.addOption("from", true, "wyswietl raport od podanej daty");
         options.addOption("help", false, "wyswietl pomoc");
         options.addOption("path", true, "sciezka");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
+        dateFromUser = cmd.getOptionValue("from");
         String path = cmd.getOptionValue("path");
-        String date = cmd.getOptionValue("from");
+
+//        try {
+//        } catch (Exception e) {
+//            dateFromUser = sampleDate;
+//        }
+
+        if (cmd.getOptionValue("from") == null) {
+            dateFromUser = sampleDate;
+        } else {
+            dateFromUser = cmd.getOptionValue("from");
+        }
 
         if (path == null) {
-            path = "src/main/resources/reporter-dane";
-            System.out.println("Raport pobrano z katalogu " + path);
-        } else {
-            System.out.println("Raport pobrano z podanej sciezki " + path);
+            path = "src/main/resources";
         }
 
-        String sampleDate = "01/01/1900";
+        sampleDate = "01/01/1900";
+//        Collections.sort(ExcelReader.reportsDateRange);
+//        LocalDate dateMin = ExcelReader.reportsDateRange.get(0);
+//        LocalDate dateMax = ExcelReader.reportsDateRange.get(ExcelReader.reportsDateRange.size() - 1);
 
-        if (date == null) {
-            date = sampleDate;
-            System.out.println("Raport przedstawia zakres od: " + date);
-        } else {
-            System.out.println("Raport przedstawia zakres od: " + date);
+        if (dateFromUser == null) {
+            dateFromUser = sampleDate;
         }
 
-        if (cmd.hasOption("t")) {
-            PrintReport.printFirstReport(ExcelReader.company(path), date);
+        if (cmd.hasOption("report1")) {
+            PrintReport.printFirstReport(ExcelReader.company(path), dateFromUser);
+        }
 
-        } else if (cmd.hasOption("r")) {
-            PrintReport.printSecondReport(ExcelReader.company(path), date);
-
+        if (cmd.hasOption("report2")) {
+            PrintReport.printSecondReport(ExcelReader.company(path), dateFromUser);
         } else if (cmd.hasOption("help")) {
             System.out.println("Opcje do wyboru:");
-
-            System.out.println("Aby wybraæ raport pierwszy wpisz w konsole -t");
-            System.out.println("Aby wybraæ raport drugi wpisz w konsole -r");
-            System.out.println("Aby wybraæ zakres dat wpisz w konsole -from YYYY/MM/DD -to YYYY/MM/DD");
-// System.out.println("Aby wybraæ raport za caly rok wpisz w konsole -year
-// YYYY");
+            System.out.println("Aby wybraÄ‡ raport pierwszy wpisz w konsole -report1");
+            System.out.println("Aby wybraÄ‡ raport drugi wpisz w konsole -report2");
+            System.out
+                    .println("Aby wybraÄ‡ zakres dat, wybierz raport i wpisz w konsole -from YYYY/MM/DD -to YYYY/MM/DD");
         } else {
-            System.out.println("Aby wybrac pomoc wpisz -help");
-
+            System.out.println("MASTERS OF DISASTER PRZEDSTAWIAJÄ„" + "\nWitaj w aplikacji!"
+                    + "\nAby wyÅ›wietliÄ‡ dostÄ™pne opcje wpisz -help");
         }
     }
 }
