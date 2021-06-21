@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class ExcelReader {
 
     public static String pathFromCLI;
     public static String fileName;
+    public static ArrayList<LocalDate> reportsDateRange = new ArrayList<LocalDate>();
+    public static LocalDate dateMin;
+    public static LocalDate dateMax;
 
     public static String getPathFromCLI() {
         return pathFromCLI;
@@ -80,29 +84,33 @@ public class ExcelReader {
                     LocalDate date = null;
                     String name;
                     double hours = 0;
-                    try{
+                    try {
                         date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
-                    }catch(Exception e) {
+                    } catch (Exception e) {
                         System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
-                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawny format daty");
+                        System.out.println(
+                                fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawny format daty");
                         continue;
                     }
-                    try{
+                    try {
                         name = sheet.getRow(i).getCell(1).getStringCellValue();
-                    }catch(Exception e) {
+                    } catch (Exception e) {
                         System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
-                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna nazwa zadania");
+                        System.out.println(
+                                fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna nazwa zadania");
                         continue;
                     }
-                    try{
+                    try {
                         hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
-                    }catch(Exception e) {
+                    } catch (Exception e) {
                         System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
-                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna liczba godzin");
+                        System.out.println(
+                                fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna liczba godzin");
                         continue;
                     }
                     Task task = new Task(date, name, hours);
                     project.addTask(task);
+                    reportsDateRange.add(date);
                 }
             }
             employee.addProject(project);
@@ -118,10 +126,12 @@ public class ExcelReader {
         for (String file : filesPaths) {
             company.addEmployee(ExcelReader.readEmployeeFromFile(new File(file)));
         }
+        filesPaths.clear();
         return company;
     }
 
     public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
+
 }

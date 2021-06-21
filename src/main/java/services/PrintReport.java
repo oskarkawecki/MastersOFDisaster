@@ -3,12 +3,14 @@ package services;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import model.Company;
 import model.Employee;
 import model.Project;
 import model.Task;
+import view.UI;
 
 public class PrintReport {
 
@@ -19,6 +21,7 @@ public class PrintReport {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         LocalDate localDate = LocalDate.parse(date, formatter);
+        LocalDate sampleDate = LocalDate.parse(UI.sampleDate, formatter);
 
         ArrayList<Employee> workers = company.getCompanyWorkers();
         for (Employee worker : workers) {
@@ -40,20 +43,35 @@ public class PrintReport {
             }
         }
 
+        Collections.sort(ExcelReader.reportsDateRange);
+        ExcelReader.dateMin = ExcelReader.reportsDateRange.get(0);
+        ExcelReader.dateMax = ExcelReader.reportsDateRange.get(ExcelReader.reportsDateRange.size() - 1);
+
+        if (localDate.isAfter(sampleDate)) {
+            System.out.println(
+                    "Raport przedstawia zakres od: " + localDate.toString() + " do:" + ExcelReader.dateMax.toString());
+        } else {
+            System.out.println("Raport przedstawia zakres od: " + ExcelReader.dateMin.toString() + " do: "
+                    + ExcelReader.dateMax.toString());
+        }
+
         if (timeSheet.isEmpty()) {
-            System.out.println("Brak danych do wyœwietlenia - sprawdz katalog");
+            System.out.println("Brak danych do wyï¿½wietlenia - sprawdz katalog");
         } else {
             System.out.println("--- RAPORT 1 ---");
             for (String projectName : timeSheet.keySet()) {
                 System.out.println("|" + projectName + "|" + " " + timeSheet.get(projectName) + " |");
             }
         }
+        timeSheet.clear();
+        System.out.println();
     }
 
     public static void printSecondReport(Company company, String date) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
         LocalDate localDate = LocalDate.parse(date, formatter);
+        LocalDate sampleDate = LocalDate.parse(UI.sampleDate, formatter);
 
         ArrayList<Employee> workers = company.getCompanyWorkers();
         for (Employee worker : workers) {
@@ -68,12 +86,8 @@ public class PrintReport {
                         projectTotalHours += hours;
                     }
                 }
-                // Jeœli employeeTimeSheet zawiera pracownika
                 if (employeeTimeSheet.containsKey(worker.getName())) {
-                    // Jeœli timeSheet pracownika zawiera projekt
                     if (employeeTimeSheet.get(worker.getName()).containsKey(project.getName())) {
-                        // Zast¹p czas przepracowany na tym projekcie: obecnym czasem + dodatkowym
-                        // wyliczonym teraz
                         timeSheet.put(project.getName(),
                                 employeeTimeSheet.get(worker.getName()).get(project.getName()) + projectTotalHours);
                         employeeTimeSheet.put(worker.getName(), timeSheet);
@@ -88,8 +102,20 @@ public class PrintReport {
             }
         }
 
+        Collections.sort(ExcelReader.reportsDateRange);
+        ExcelReader.dateMin = ExcelReader.reportsDateRange.get(0);
+        ExcelReader.dateMax = ExcelReader.reportsDateRange.get(ExcelReader.reportsDateRange.size() - 1);
+
+        if (localDate.isAfter(sampleDate)) {
+            System.out.println(
+                    "Raport przedstawia zakres od: " + localDate.toString() + " do:" + ExcelReader.dateMax.toString());
+        } else {
+            System.out.println("Raport przedstawia zakres od: " + ExcelReader.dateMin.toString() + " do: "
+                    + ExcelReader.dateMax.toString());
+        }
+
         if (employeeTimeSheet.isEmpty()) {
-            System.out.println("Brak danych do wyœwietlenia - sprawdz katalog");
+            System.out.println("Brak danych do wyÅ›wietlenia - sprawdz katalog");
         } else {
             System.out.println("--- RAPORT 2 ---");
 
@@ -107,6 +133,9 @@ public class PrintReport {
             }
 
         }
+        timeSheet.clear();
+        employeeTimeSheet.clear();
+        System.out.println();
     }
 
 }
