@@ -74,13 +74,30 @@ public class ExcelReader {
                     System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niewlasciwe dane.");
                     continue;
                 } else {
-                    LocalDate date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
-                    String name = sheet.getRow(i).getCell(1).getStringCellValue();
-                    double hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
+                    LocalDate date = null;
+                    String name;
+                    double hours = 0;
+                    try{
+                        date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
+                    }catch(Exception e) {
+                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawny format daty.");
+                        continue;
+                    }
+                    try{
+                        name = sheet.getRow(i).getCell(1).getStringCellValue();
+                    }catch(Exception e) {
+                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawne dane.");
+                        continue;
+                    }
+                    try{
+                        hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
+                    }catch(Exception e) {
+                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawny format godzin.");
+                        continue;
+                    }
                     Task task = new Task(date, name, hours);
                     project.addTask(task);
                 }
-
             }
             employee.addProject(project);
         }
