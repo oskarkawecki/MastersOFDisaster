@@ -20,6 +20,7 @@ import model.Task;
 public class ExcelReader {
 
     public static String pathFromCLI;
+    public static String fileName;
 
     public static String getPathFromCLI() {
         return pathFromCLI;
@@ -30,6 +31,7 @@ public class ExcelReader {
     }
 
     public static Workbook openExcelFile(File file) {
+        fileName = file.toString();
         try {
             return WorkbookFactory.create(file);
         } catch (IOException e) {
@@ -71,7 +73,8 @@ public class ExcelReader {
             for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
                 if (sheet.getRow(i).getCell(0) == null || sheet.getRow(i).getCell(1) == null
                         || sheet.getRow(i).getCell(2) == null) {
-                    System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niewlasciwe dane.");
+                    System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                    System.out.println(fileName + " w projekcie " + sheet.getSheetName());
                     continue;
                 } else {
                     LocalDate date = null;
@@ -80,19 +83,22 @@ public class ExcelReader {
                     try{
                         date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
                     }catch(Exception e) {
-                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawny format daty.");
+                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawny format daty");
                         continue;
                     }
                     try{
                         name = sheet.getRow(i).getCell(1).getStringCellValue();
                     }catch(Exception e) {
-                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawne dane.");
+                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna nazwa zadania");
                         continue;
                     }
                     try{
                         hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
                     }catch(Exception e) {
-                        System.out.println("Uwaga: wiersz o numerze " + i + " zostal pominiety. Niepoprawny format godzin.");
+                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.println(fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna liczba godzin");
                         continue;
                     }
                     Task task = new Task(date, name, hours);
