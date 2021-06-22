@@ -11,6 +11,7 @@ Plik xls powinien zawierać trzy poniższe nagłówki.
 
 
 Opcje do wyboru:
+
 -report1, aby wyświetlić raport 1 który sumuje liczbę godzin przepracowaną w projekcie,
 
 -report2, aby wyświetlić raport 2 który sumuje liczbę godzin przepracowaną przez pracownika w projektach,
