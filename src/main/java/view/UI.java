@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -14,9 +16,11 @@ public class UI {
     public static String dateFromUser;
     public static String sampleDate;
 
-    public static void parsearguments(String[] args) throws ParseException {
+    public static void parsearguments(String[] args) throws ParseException, IOException {
 
         Options options = new Options();
+        
+        String currentPath = new java.io.File(".").getCanonicalPath();
 
         options.addOption("report1", false, "wyswietl raport pierwszy");
         options.addOption("report2", false, "wyswietl raport drugi");
@@ -38,9 +42,11 @@ public class UI {
 //        else {
 //            dateFromUser = cmd.getOptionValue("from");
 //        }
+            
+            System.out.println("Aby wyswietlic dostepne opcje wpisz -help");
 
             if (path == null) {
-                path = "src/main/resources";
+                path = currentPath;
             }
 
             if (dateFromUser == null) {
@@ -56,17 +62,15 @@ public class UI {
             }
             if (cmd.hasOption("help")) {
                 System.out.println("Opcje do wyboru:");
-                System.out.println("Aby wybrać raport pierwszy wpisz w konsole -report1");
-                System.out.println("Aby wybrać raport drugi wpisz w konsole -report2");
+                System.out.println("Aby wybrac raport pierwszy wpisz w konsole -report1");
+                System.out.println("Aby wybrac raport drugi wpisz w konsole -report2");
                 System.out.println(
-                        "Aby wybrać zakres dat, wybierz raport i wpisz w konsole -from DD/MM/YYYY -to DD/MM/YYYY");
-            } else {
-                System.out.println("MASTERS OF DISASTER PRZEDSTAWIAJĄ" + "\nWitaj w aplikacji!"
-                        + "\nAby wyświetlić dostępne opcje wpisz -help");
+                        "Aby wybrac zakres dat, wybierz raport i wpisz w konsole -from DD/MM/YYYY -to DD/MM/YYYY");
             }
+            
         } catch (Exception ex) {
             // TODO Auto-generated catch block
-            System.out.println("Proszę podaj zakres dat w formacie DD/MM/YYYY, np. -from 01/01/2012");
+            System.out.println("Prosze podaj zakres dat w formacie DD/MM/YYYY, np. -from 01/01/2012");
         }
     }
 }
