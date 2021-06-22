@@ -88,9 +88,7 @@ public class PrintReport {
                 }
                 if (employeeTimeSheet.containsKey(worker.getName())) {
                     if (employeeTimeSheet.get(worker.getName()).containsKey(project.getName())) {
-                        timeSheet.put(project.getName(),
-                                employeeTimeSheet.get(worker.getName()).get(project.getName()) + projectTotalHours);
-                        employeeTimeSheet.put(worker.getName(), timeSheet);
+                        employeeTimeSheet.get(worker.getName()).put(project.getName(), employeeTimeSheet.get(worker.getName()).get(project.getName()) + projectTotalHours);
                     } else {
                         timeSheet.put(project.getName(), projectTotalHours);
                         employeeTimeSheet.put(worker.getName(), timeSheet);
