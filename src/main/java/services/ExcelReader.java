@@ -77,7 +77,7 @@ public class ExcelReader {
             for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
                 if (sheet.getRow(i).getCell(0) == null || sheet.getRow(i).getCell(1) == null
                         || sheet.getRow(i).getCell(2) == null) {
-                    System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                    System.out.print("Uwaga: wiersz o numerze " + (i+1) + " zostal pominiety w pliku: ");
                     System.out.println(fileName + " w projekcie " + sheet.getSheetName());
                     continue;
                 } else {
@@ -87,7 +87,7 @@ public class ExcelReader {
                     try {
                         date = convertToLocalDateViaInstant(sheet.getRow(i).getCell(0).getDateCellValue());
                     } catch (Exception e) {
-                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.print("Uwaga: wiersz o numerze " + (i+1) + " zostal pominiety w pliku: ");
                         System.out.println(
                                 fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawny format daty");
                         continue;
@@ -95,7 +95,7 @@ public class ExcelReader {
                     try {
                         name = sheet.getRow(i).getCell(1).getStringCellValue();
                     } catch (Exception e) {
-                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.print("Uwaga: wiersz o numerze " + (i+1) + " zostal pominiety w pliku: ");
                         System.out.println(
                                 fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna nazwa zadania");
                         continue;
@@ -103,7 +103,7 @@ public class ExcelReader {
                     try {
                         hours = (double) sheet.getRow(i).getCell(2).getNumericCellValue();
                     } catch (Exception e) {
-                        System.out.print("Uwaga: wiersz o numerze " + i + " zostal pominiety w pliku: ");
+                        System.out.print("Uwaga: wiersz o numerze " + (i+1) + " zostal pominiety w pliku: ");
                         System.out.println(
                                 fileName + " w projekcie " + sheet.getSheetName() + ". Niepoprawna liczba godzin");
                         continue;
