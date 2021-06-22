@@ -3,7 +3,7 @@ Aplikacja do zarządzania czasem pracy w projekcie
 Autorzy: Oskar Kawecki, Marcin Kura, Marcin Kubasiak, Dawid Stefanik, Aleksandra Zajdel, Łukasz Korzeń;  
 Consulting: dr Kamil Piętak
 
-Aplikacja umożliwia puszczenie dwóch raportów które sumują liczbę godzin przepracowaną w firmie w danym projekcie jak również liczbę godzin przepracowanych przez danego pracownika na poszczególnych projektach. Dane wyjściowe dla aplikacji powinnny być zapisane w formacje .xls w folderze reporter\src\main\resources lub wskazanym podczas uruchamiania programu.
+Aplikacja umożliwia puszczenie dwóch raportów które sumują liczbę godzin przepracowaną w firmie w danym projekcie jak również liczbę godzin przepracowanych przez danego pracownika na poszczególnych projektach. Dane wyjściowe dla aplikacji powinnny być zapisane w formacie .xls w folderze reporter\src\main\resources lub wskazanym podczas uruchamiania programu.
 Plik xls powinien zawierać trzy poniższe nagłówki.	
 
 	Data		Zadanie		  	Czas [h]
@@ -13,6 +13,7 @@ Plik xls powinien zawierać trzy poniższe nagłówki.
 Opcje do wyboru:
 -report1, aby wyświetlić raport 1 który sumuje liczbę godzin przepracowaną w projekcie,
 -report2, aby wyświetlić raport 2 który sumuje liczbę godzin przepracowaną przez pracownika w projektach,
+-report1 -report2, aby jednocześnie wyświetlić ww raporty,
 -from DD/MM/YYYY, aby wyświetlić raport w określonym zakresie czasu
 -path, aby wskazać ścieżkę dla zapisanych plików raportowych wpisz na konsoli. Jeśli parametr nie będzie podany aplikacja będzie korzystać z domyślnej ścieżki src/main/resources/reporter-dane";
 
