@@ -6,8 +6,8 @@ Consulting: dr Kamil Piętak
 Aplikacja umożliwia puszczenie dwóch raportów które sumują liczbę godzin przepracowaną w firmie w danym projekcie jak również liczbę godzin przepracowanych przez danego pracownika na poszczególnych projektach. Dane wyjściowe dla aplikacji powinnny być zapisane w formacje .xls w folderze reporter\src\main\resources lub wskazanym podczas uruchamiania programu.
 Plik xls powinien zawierać trzy poniższe nagłówki.	
 
-	Data		Zadanie		  Czas [h]
-2012-02-08	Testy prototypu		3,5
+	Data		Zadanie		  	Czas [h]
+	2012-02-08	Testy prototypu		3,5
 
 
 Opcje do wyboru:
