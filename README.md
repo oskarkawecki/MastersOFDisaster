@@ -8,15 +8,15 @@ Plik xls powinien zawierać trzy poniższe nagłówki.
 
 
 
-Autorzy: Oskar Kawecki, Marcin Kura, Marcin Kubasia, Dawid Stefanik, Aleksandra Zajdel, Łukasz Korzeń 
+Autorzy: Oskar Kawecki, Marcin Kura, Marcin Kubasiak, Dawid Stefanik, Aleksandra Zajdel, Łukasz Korzeń 
 Consulting: dr Kamil Piętak
 
 
 
 
 Opcje do wyboru:
--t	Aby wyświetlić raport 1 który sumuje liczbę godzin przepracowaną w projekcie, wpisz na konsoli:  -t
-Aby wyświetlić raport 2 który sumuje liczbę godzin przepracowaną przez pracownika w projektach, wpisz na konsoli:  -r
+-report1	Aby wyświetlić raport 1 który sumuje liczbę godzin przepracowaną w projekcie, wpisz na konsoli:  -report2
+Aby wyświetlić raport 2 który sumuje liczbę godzin przepracowaną przez pracownika w projektach, wpisz na konsoli:  -
 Aby wyświetlić raport w określonym zakresie czasu wpisz na konsoli - from DD/MM/YYYY
 Aby wskazać ściężkę dla zapisanych plików raportowych wpisz na konsoli: -path, jeśli parametr nie będzie podany aplikacja będzie korzystać z domyślnej ścieżki src/main/resources/reporter-dane";
 
