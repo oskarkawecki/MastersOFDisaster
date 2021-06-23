@@ -38,6 +38,19 @@ Dane wyjściowe dla aplikacji powinny być zapisane w formacie .xls w folderze r
 
 ________________________________________
 
+Uruchomienie:
+
+Uruchom wiersz poleceń wpisując "cmd" w Menu Start.
+
+Aby uruchomić narzędzie  w wierszu poleceń należy wejść w katalog zawierający plik reporter.jar i użyć komendy:
+
+java -jar reporter.jar "ścieżkaDoFolderuZPlikamiDanych"
+
+np.
+
+java -jar reporter.jar "C:\Users\olaaz\Desktop\reporter-project"
+________________________________________
+
 Użytkowanie:
 
 -report1 -> wyświetla raport 1, który sumuje liczbę godzin spędzonych na pracy nad projektem
