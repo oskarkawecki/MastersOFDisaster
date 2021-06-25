@@ -47,9 +47,9 @@ public class UI {
 
             if (path == null) {
                 path = currentPath;
-                System.out.println("Aplikacja pobiera dane z domyœlnej œcie¿ki: " + path);
+                System.out.println("Aplikacja pobiera dane z domyslnej sciezki: " + path);
             } else {
-                System.out.println("Aplikacja pobiera dane z podanej œcie¿ki: " + path);
+                System.out.println("Aplikacja pobiera dane z podanej sciezki: " + path);
             }
             	
 
@@ -68,8 +68,8 @@ public class UI {
                 System.out.println("Opcje do wyboru:");
                 System.out.println("-report1 -aby wybrac raport pierwszy wpisz w konsole");
                 System.out.println("-report2 -aby wybrac raport drugi wpisz w konsole");
-                System.out.println("-from DD/MM/YYYY -aby wybraæ datê pocz¹tkow¹ raportu");
-                System.out.println("-path sciezka -aby wybraæ swoj¹ œcie¿kê z danymi");		
+                System.out.println("-from DD/MM/YYYY -aby wybrac date poczatkowa raportu");
+                System.out.println("-path sciezka -aby wybrac swoja sciezke z danymi");		
                       //  "Aby wybrac zakres dat, wybierz raport i wpisz w konsole -from DD/MM/YYYY -to DD/MM/YYYY");
             } 
             //else {
@@ -79,8 +79,8 @@ public class UI {
             
         } catch (Exception ex) {
             // TODO Auto-generated catch block
-          System.out.println("Coœ posz³o nie tak. Upewnij siê czy prawid³owo wprowadzi³eœ parametry œcie¿ki lub daty." );
-          System.out.println("Aby wyœwietliæ dostêpne opcje wpisz -help" );
+          System.out.println("Cos poszlo nie tak. Upewnij sie czy prawidlowo wprowadzi³es parametry sciezki lub daty." );
+          System.out.println("Aby wyswietlic dostepne opcje wpisz -help" );
         }
     }
 }
