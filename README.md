@@ -30,7 +30,7 @@ Program umożliwia użytkownikowi odczytywanie z plików .xls danych dotyczącyc
 
 Wymagania:
 
-Dane wyjściowe dla aplikacji powinny być zapisane w formacie .xls w folderze reporter\src\main\resources lub wskazanym podczas uruchamiania programu. Plik xls powinien zawierać trzy poniższe nagłówki.
+Dane wyjściowe dla aplikacji powinny być zapisane w formacie .xls w folderze aplikacji lub wskazanym podczas uruchamiania programu. Plik xls powinien zawierać trzy poniższe nagłówki.
 
 	Data		Zadanie		  	Czas [h]
 	2012-02-08	Testy prototypu		3,5
@@ -61,7 +61,7 @@ Użytkowanie:
 
 -from DD/MM/YYYY -> pozwala wyświetlić raport w określonym przez użytkownika zakresie czasu
 
--path -> pozwala wskazać ścieżkę dla zapisanych plików raportowych wpisz na konsoli. Jeśli parametr nie będzie podany aplikacja będzie korzystać z domyślnej ścieżki „src/main/resources/reporter-dane”
+-path -> pozwala wskazać ścieżkę dla zapisanych plików raportowych wpisz na konsoli. Jeśli parametr nie będzie podany aplikacja będzie korzystać z domyślnej ścieżki którą jest folder aplikacji
 ________________________________________
 
 Obsługa błędów:
@@ -69,6 +69,14 @@ Obsługa błędów:
 -	„Brak danych do wyświetlenia - sprawdź katalog” - sprawdź czy podana ścieżka dla pobrania plików wyjściowych jest poprawna 
 
 -	-"Uwaga: wiersz o numerze X został pominięty. Niewłaściwe dane." - sprawdź czy zawartość wiersza X w którymś z plików jest pusta lub zawiera niewłaściwy typ danych
+
+-	-"Uwaga: wiersz o numerze X został pominięty.  Niepoprawny format daty." - sprawdź czy zawartość kolumny daty dla wiersza X w którymś z plików jest pusta lub zawiera niewłaściwy typ danych
+
+-	-"Uwaga: wiersz o numerze X został pominięty.  Niepoprawna nazwa zadania." - sprawdź czy zawartość kolumny zadania dla wiersza X w którymś z plików jest pusta lub zawiera niewłaściwy typ danych
+
+-	-"Uwaga: wiersz o numerze X został pominięty.  Niepoprawna liczba godzin." - sprawdź czy zawartość kolumny czasu dla wiersza X w którymś z plików jest pusta lub zawiera niewłaściwy typ danych
+
+
 ________________________________________
 
 Pomoc

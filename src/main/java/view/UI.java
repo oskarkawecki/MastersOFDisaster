@@ -43,14 +43,18 @@ public class UI {
 //            dateFromUser = cmd.getOptionValue("from");
 //        }
             
-            System.out.println("Aby wyswietlic dostepne opcje wpisz -help");
+            //System.out.println("Aby wyœwietliæ dostêpne opcje wpisz -help");
 
             if (path == null) {
                 path = currentPath;
+                System.out.println("Aplikacja pobiera dane z domyœlnej œcie¿ki: " + path);
+            } else {
+                System.out.println("Aplikacja pobiera dane z podanej œcie¿ki: " + path);
             }
+            	
 
             if (dateFromUser == null) {
-                dateFromUser = sampleDate;
+                dateFromUser = sampleDate;	
             }
 
             if (cmd.hasOption("report1")) {
@@ -62,15 +66,21 @@ public class UI {
             }
             if (cmd.hasOption("help")) {
                 System.out.println("Opcje do wyboru:");
-                System.out.println("Aby wybrac raport pierwszy wpisz w konsole -report1");
-                System.out.println("Aby wybrac raport drugi wpisz w konsole -report2");
-                System.out.println(
-                        "Aby wybrac zakres dat, wybierz raport i wpisz w konsole -from DD/MM/YYYY -to DD/MM/YYYY");
-            }
+                System.out.println("-report1 -aby wybrac raport pierwszy wpisz w konsole");
+                System.out.println("-report2 -aby wybrac raport drugi wpisz w konsole");
+                System.out.println("-from DD/MM/YYYY -aby wybraæ datê pocz¹tkow¹ raportu");
+                System.out.println("-path sciezka -aby wybraæ swoj¹ œcie¿kê z danymi");		
+                      //  "Aby wybrac zakres dat, wybierz raport i wpisz w konsole -from DD/MM/YYYY -to DD/MM/YYYY");
+            } 
+            //else {
+             //   System.out.println("Aby wybrac pomoc wpisz -help");
+           // }
+            
             
         } catch (Exception ex) {
             // TODO Auto-generated catch block
-            System.out.println("Prosze podaj zakres dat w formacie DD/MM/YYYY, np. -from 01/01/2012");
+          System.out.println("Coœ posz³o nie tak. Upewnij siê czy prawid³owo wprowadzi³eœ parametry œcie¿ki lub daty." );
+          System.out.println("Aby wyœwietliæ dostêpne opcje wpisz -help" );
         }
     }
 }
